@@ -21,7 +21,7 @@ $pdoStatement = $pdo->prepare($sql);
 // 想生成的資料數量
 $dataNumber = 500;
 
-for ($i=1; $i<$dataNumber; $i++) {
+for ($i=1; $i<=$dataNumber; $i++) {
     shuffle($lastName);
     shuffle($firstName);
     shuffle($emailAccountPrefix);
