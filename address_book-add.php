@@ -73,7 +73,7 @@ $title = '新增通訊錄 - 丹德里恩的練習';
                                 </div>
                                 <div class="modal-body"></div>
                                 <div class="modal-footer">
-                                    <button id="modal-uncheck" type="button" class="btn btn-secondary" data-bs-dismiss="modal">我不想聽</button>
+                                    <button id="modal-uncheck" type="button" class="btn btn-secondary" data-bs-dismiss="modal"></button>
                                     <button id="modal-check" type="button" class="btn btn-primary"></button>
                                 </div>
                             </div>
