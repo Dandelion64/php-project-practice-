@@ -147,11 +147,12 @@ if ($totalRows > 0) {
     const checkTarget = document.querySelectorAll('.checktarget');
 
     const checkAll = (e) => {
-        console.log(e.target);
-        for (let row of checkTarget) {
-            if (e.target.checked === true) {
+        if (e.target.checked === true) {
+            for (let row of checkTarget) {
                 row.setAttribute('checked', 'checked');
-            } else {
+            }
+        } else {
+            for (let row of checkTarget) {
                 row.removeAttribute('checked');
             }
         }
