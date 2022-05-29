@@ -61,12 +61,35 @@ if ($totalRows > 0) {
                             <i class="fa-solid fa-angle-left"></i>
                         </a>
                     </li>
-                    <?php for ($i = $page - 5; $i <= $page + 5; $i++) :
+                    <?php 
+                    // 固定成 1 + 2 * $pagesOptional 頁
+                    // 宣告
+                    $beginPage;
+                    $endPage;
+                    $pagesOptional = 3;
+                    if ($totalPages <= $pagesOptional) {
+                        $beginPage = 1;
+                        $endPage = $totalPages;
+                    } else if ($page-1 < $pagesOptional) {
+                        $beginPage = 1;
+                        $endPage = $pagesOptional * 2 + 1;
+                    } else if ($totalPages-$page < $pagesOptional) {
+                        // 註解一份 這裡要改
+                        // $beginPage = $totalPages-($pagesOptional * 2 + 1);
+                        $beginPage = $totalPages-($pagesOptional * 2);
+                        $endPage = $totalPages;
+                    } else {
+                        $beginPage = $page-$pagesOptional;
+                        $endPage = $page+$pagesOptional;
+                    }
+                    // 下面起始結束條件跟著修正即可 
+                    ?>
+                    <?php for ($i = $beginPage; $i <= $endPage; $i++) :
                         if ($i >= 1 and $i <= $totalPages) :
                     ?>
-                    <li class="page-item <?= $page == $i ? 'active' : '' ?>">
-                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                    </li>
+                            <li class="page-item <?= $page == $i ? 'active' : '' ?>">
+                                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                            </li>
                     <?php endif;
                     endfor; ?>
                     <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
@@ -122,10 +145,10 @@ if ($totalRows > 0) {
                     <td><?= $r['email'] ?></td>
                     <td><?= $r['birthday'] ?></td>
                     <td><?= htmlentities($r['address']) ?></td>
-                    <?php 
+                    <?php
                     /*
                     <td><?= strip_tags($r['address']) ?></td>
-                    */ 
+                    */
                     ?>
                     <td>
                         <a href="address_book-edit.php?sid=<?= $r['sid'] ?>">
@@ -135,10 +158,7 @@ if ($totalRows > 0) {
                 </tr>
             <?php endforeach; ?>
         </tbody>
-
     </table>
-
-
 </div>
 
 <?php include __DIR__ . '/parts/scripts.php' ?>
