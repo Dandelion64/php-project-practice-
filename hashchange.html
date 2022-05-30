@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HASHCHANGE</title>
+    <style type="text/css">
+        .box {
+            position: relative;
+            width: 300px;
+            height: 800px;
+            background-color: #f5cd52;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="#aa">aa</a>
+        <a href="#bb">bb</a>
+        <a href="#cc">cc</a>
+    </div>
+    <div class="box" id="aa"></div>
+    <div class="box" id="bb" style="background-color: #69c8f1"></div>
+    <div class="box" id="cc" style="background-color: #9ddc5e"></div>
+    <div>
+        <a href="#aa">aa</a>
+        <a href="#bb">bb</a>
+        <a href="#cc">cc</a>
+    </div>
+    <script>
+        // Window: hashchange event
+        // 這是 winodw 內建事件 早期很常用
+        // 後來有了 History.pushState() 就比較少
+        // 因為 hash 必須是字串 無法放像陣列的結構 
+        // (不過可以接 JSON 字串 醜但是有用)
+        // 而且必須放在 query string 後面
+        // 這會導致 query string 失效
+
+        // hash 是包含 # 的
+        // 不需要的話要記得切掉
+        window.addEventListener('hashchange', function(){
+            console.log(location.hash);
+        });
+    </script>
+</body>
+</html>
