@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Show Thumbnails</title>
+    </head>
+    <style type="text/css">
+        #dropbox {
+            width: 300px;
+            height: 300px;
+            background-color: #fcc;
+        }
+    </style>
+    <body>
+        <div id="dropbox"></div>
+        <div id="preview"></div>
+        <script>
+            let dropbox;
+
+            dropbox = document.getElementById("dropbox");
+            dropbox.addEventListener("dragenter", dragenter, false);
+            dropbox.addEventListener("dragover", dragover, false);
+            dropbox.addEventListener("drop", drop, false);
+
+            preview = document.getElementById("preview");
+
+            function dragenter(e) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
+
+            function dragover(e) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
+
+            function drop(e) {
+                e.stopPropagation();
+                e.preventDefault();
+
+                const dt = e.dataTransfer;
+                // console.log(dt);
+                const files = dt.files;
+                // console.log(files);
+
+                handleFiles(files);
+            }
+
+            function handleFiles(files) {
+                // 加上清空上次圖片的功能
+                // 也可以用 innerHTML 一次清空其實
+                while (preview.firstChild) {
+                    preview.removeChild(preview.firstChild);
+                }
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+
+                    if (!file.type.startsWith("image/")) {
+                        continue;
+                    }
+
+                    const img = document.createElement("img");
+                    img.classList.add("obj");
+                    img.file = file;
+                    preview.appendChild(img);
+
+                    const reader = new FileReader();
+                    reader.onload = (function (aImg) {
+                        return function (e) {
+                            aImg.src = e.target.result;
+                        };
+                    })(img);
+                    reader.readAsDataURL(file);
+                }
+            }
+        </script>
+    </body>
+</html>
