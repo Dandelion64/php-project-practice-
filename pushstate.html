@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUSHSTATE</title>
+</head>
+<body>
+    <button onclick="doPush()">PUSH STATE</button>
+    <script>
+        const doPush = () => {
+            history.pushState({ name: 'Bill' }, '', '?name=Bill'); // query string
+            // history.pushState({ name: 'Bill' }, null, '?name=Bill'); // query string
+            // history.pushState({ name: 'Bill' }, null, '/abc/def'); // path
+            // history.pushState({ name: 'Bill' }, null, 'https://tw.yahoo.com'); // 沒有作用
+            // 因為主機不同
+        }
+    </script>
+</body>
+</html>
