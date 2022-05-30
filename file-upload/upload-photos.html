@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>UPLOAD-PHOTOS</title>
+    </head>
+    <body>
+        <form name="formupload" style="display: none">
+            <!-- 記得傳入多值 name = ***[] -->
+            <input type="file" name="photos[]" accept="image/*" multiple />
+        </form>
+
+        <button id="btn" onclick="uploadPhotos()">上傳照片</button>
+        <br />
+        <img id="myimg" src="" alt="" />
+        <script>
+            const btn = document.querySelector("#btn");
+            const myimg = document.querySelector("#myimg");
+            const photos = document.formupload.elements[0];
+
+            photos.addEventListener("change", async function () {
+                // 上傳表單
+                const fd = new FormData(document.formupload);
+                const r = await fetch("upload-photos-api.php", {
+                    method: "POST",
+                    body: fd,
+                });
+                const obj = await r.json();
+                // myimg.src = "./uploaded/" + obj.filename;
+            });
+
+            function uploadPhotos() {
+                photos.click(); // 模擬點擊
+            }
+        </script>
+    </body>
+</html>
