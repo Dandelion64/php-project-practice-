@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>UPLOAD-AVATAR</title>
+    </head>
+    <body>
+        <form
+            name="formupload"
+            action="upload-avatar-api.php"
+            method="post"
+            enctype="multipart/form-data"
+            style="display: none"
+        >
+            <input type="file" name="avatar" accept="image/*" />
+        </form>
+
+        <button id="btn" onclick="uploadAvatar()">上傳大頭貼</button>
+        <br />
+        <img id="myimg" src="" alt="" />
+        <script>
+            const btn = document.querySelector("#btn");
+            const myimg = document.querySelector("#myimg");
+            const avatar = document.formupload.avatar;
+
+            avatar.addEventListener("change", async function () {
+                // 上傳表單
+                const fd = new FormData(document.formupload);
+                const r = await fetch("upload-avatar-api.php", {
+                    method: "POST",
+                    body: fd,
+                });
+                const obj = await r.json();
+                // console.log(obj);
+                myimg.src = "./uploaded/" + obj.filename;
+            });
+
+            function uploadAvatar() {
+                avatar.click(); // 模擬點擊
+            }
+
+            // 在這裡檔案上傳和表單上傳是分開來處理的
+            // 缺點是 Server 端可能會有一堆垃圾檔案
+            // 應該要另外去處理
+        </script>
+    </body>
+</html>
