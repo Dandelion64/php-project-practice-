@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hidden Input</title>
+    </head>
+
+    <body>
+        <input
+            type="file"
+            id="fileElem"
+            multiple
+            accept="image/*"
+            style="display: none"
+        />
+        <button id="fileSelect">Select some files</button>
+
+        <script>
+            const fileSelect = document.getElementById("fileSelect"),
+                fileElem = document.getElementById("fileElem");
+
+            fileSelect.addEventListener(
+                "click",
+                function (e) {
+                    if (fileElem) {
+                        fileElem.click();
+                    }
+                },
+                false
+            );
+        </script>
+    </body>
+</html>
