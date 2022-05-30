@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POPSTATE</title>
+</head>
+<body>
+    <button onclick="doPush('bill')">PUSH STATE</button>
+    <button onclick="doPush('dave')">POP STATE</button>
+
+    <script>
+        const doPush = (name) => {
+            history.pushState({name}, null,'?name=' + name); // query string
+        }
+
+        window.addEventListener('popstate', (event) => {
+            console.log(event.state);
+            console.log(location.search);
+        })
+    </script>
+</body>
+</html>
