@@ -59,9 +59,9 @@ $title = '新增通訊錄 - 丹德里恩的練習';
                     <!-- Bootstrap Components Modal -->
                     <!-- 要在訊息回來才跳出來 -->
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Launch static backdrop modal
-                    </button>
+                    </button> -->
 
                     <!-- Modal -->
                     <div id="myModal" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -125,7 +125,7 @@ $title = '新增通訊錄 - 丹德里恩的練習';
         // Todo: 欄位檢查 前端的檢查
         let isPass = true; // 預設是通過檢查的
 
-        if (name_field.value.length < 2) {
+        if (name_field.value.trim().length < 2) {
             // alert('姓名至少要兩個字元');
             name_field.classList.add('red');
 
