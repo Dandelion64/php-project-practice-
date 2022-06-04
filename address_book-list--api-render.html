@@ -149,7 +149,7 @@
 
             // 讀到第幾頁的表單內容
             console.log(page);
-            if (page) {
+            if (!page) {
                 const fetchURL = 'address_book-list-api.php?page=1';
                 fetch(fetchURL)
                     .then((r) => r.json()) 
@@ -157,7 +157,7 @@
                         data = obj;
                         renderTable();
                         renderPagination(1);
-                        history.pushState(page, '', '?page=' + page);
+                        history.pushState(page, '', '?page=' + 1);
                     }
                 );
             } else {
